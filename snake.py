@@ -1,9 +1,10 @@
-# snakegame-
-snake game using python with pygame package 
+# Snake!
+# Developed using pygame, a python library meant for game development!
+
 # importing libraries
 import pygame
 import time
-import random
+from random import randrange
 
 snake_speed = 15
 
@@ -37,14 +38,14 @@ snake_body = [[100, 50],
               [80, 50],
               [70, 50]
               ]
+
 # fruit position
-fruit_position = [random.randrange(1, (window_x // 10)) * 10,
-                  random.randrange(1, (window_y // 10)) * 10]
+fruit_position = [randrange(1, (window_x // 10)) * 10,
+                  randrange(1, (window_y // 10)) * 10]
 
 fruit_spawn = True
 
-# setting default snake direction towards
-# right
+# setting default snake direction towards right
 direction = 'RIGHT'
 change_to = direction
 
@@ -74,13 +75,11 @@ def game_over():
     # creating font object my_font
     my_font = pygame.font.SysFont('times new roman', 50)
 
-    # creating a text surface on which text
-    # will be drawn
+    # creating a text surface on which text will be drawn
     game_over_surface = my_font.render(
         'Your Score is : ' + str(score), True, red)
 
-    # create a rectangular object for the text
-    # surface object
+    # create a rectangular object for the text surface object
     game_over_rect = game_over_surface.get_rect()
 
     # setting position of the text
@@ -115,9 +114,7 @@ while True:
             if event.key == pygame.K_RIGHT:
                 change_to = 'RIGHT'
 
-    # If two keys pressed simultaneously
-    # we don't want snake to move into two
-    # directions simultaneously
+    # If two keys pressed simultaneously, we don't want snake to move into two directions simultaneously
     if change_to == 'UP' and direction != 'DOWN':
         direction = 'UP'
     if change_to == 'DOWN' and direction != 'UP':
@@ -137,9 +134,7 @@ while True:
     if direction == 'RIGHT':
         snake_position[0] += 10
 
-    # Snake body growing mechanism
-    # if fruits and snakes collide then scores
-    # will be incremented by 10
+    # Snake body growing mechanism if fruits and snakes collide then scores will be incremented by 10
     snake_body.insert(0, list(snake_position))
     if snake_position[0] == fruit_position[0] and snake_position[1] == fruit_position[1]:
         score += 10
@@ -148,8 +143,8 @@ while True:
         snake_body.pop()
 
     if not fruit_spawn:
-        fruit_position = [random.randrange(1, (window_x // 10)) * 10,
-                          random.randrange(1, (window_y // 10)) * 10]
+        fruit_position = [randrange(1, (window_x // 10)) * 10,
+                          randrange(1, (window_y // 10)) * 10]
 
     fruit_spawn = True
     game_window.fill(black)
@@ -177,5 +172,5 @@ while True:
     # Refresh game screen
     pygame.display.update()
 
-    # Frame Per Second /Refresh Rate
+    # Frame Per Second / Refresh Rate
     fps.tick(snake_speed)
