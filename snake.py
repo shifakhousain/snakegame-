@@ -352,5 +352,5 @@ while True:
     # Refresh game screen
     pygame.display.update()
 
-    # Frame Per Second /Refresh Rate
+    # Frame Per Second / Refresh Rate
     fps.tick(snake_speed)
